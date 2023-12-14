@@ -111,6 +111,58 @@ export default function Gallery() {
   );
   
 }*/
+
+  /*
+function Avatar({ person, size }) {
+  return (
+    <img
+      className="avatar"
+      src={getImageUrl(person.imageId, size < 90 ? 's' : 'b')}
+      alt={person.name}
+      width={size}
+      height={size}
+    />
+  );
+}
+
+export default function Profile() {
+  return (
+    <Avatar
+      size={111}
+      person={{
+        name: 'Gregorio Y. Zara',
+        imageId: '7vQD0fP'
+      }}
+    />
+  );
+}
+
+*/
+/*
+import Card from './Card';
+
+export default function Profile() {
+  return (
+    <div>
+      <Card>
+        <h1>Foto</h1>
+        <img
+          className="avatar"
+          src="https://i.imgur.com/OKS67lhm.jpg"
+          alt="Aklilu Lemma"
+          width={70}
+          height={70}
+        />
+      </Card>
+      <Card>
+        <h1>Acerca de</h1>
+        <p>Aklilu Lemma fue un distinguido científico etíope que descubrió un tratamiento natural para la esquistosomiasis.</p>
+      </Card>
+    </div>
+  );
+}
+*/
+  
 /*
 function Elemento({ nombre, estaEmpacado }) {
   if (estaEmpacado) {//Si esta empaquetado se le pone el tick
