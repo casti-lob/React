@@ -56,7 +56,7 @@ return (
 </div>
 );
 }
-*/
+*//*
 import { getImageUrl } from './utils.jsx';
 
 function Profile({ name, imageId, profession, recognitions, discovery }) {
@@ -109,4 +109,152 @@ export default function Gallery() {
       <Profile {...saruhashiProps} />
     </div>
   );
+  
+}*/
+/*
+function Elemento({ nombre, estaEmpacado }) {
+  if (estaEmpacado) {//Si esta empaquetado se le pone el tick
+    return <li className="item">{nombre} ✔</li>;
+  }//Si queremos no mostrarlo directamente con return null
+  return <li className="item">{nombre}</li>;
+}
+
+export default function ListaEmpaque() {
+  return (
+    <section>
+      <h1>Lista de Empaque de Sally Ride</h1>
+      <ul>
+        <Elemento 
+          estaEmpacado={true} 
+          nombre="Traje espacial" 
+        />
+        <Elemento 
+          estaEmpacado={true} 
+          nombre="Casco con hoja dorada" 
+        />
+        <Elemento 
+          estaEmpacado={false} 
+          nombre="Foto de Tam" 
+        />
+      </ul>
+    </section>
+  );
+}
+*/
+/*
+//Condicional ternario
+function Item({ name, isPacked }) {
+  return (
+    <li className="item">
+      {name} {isPacked ? '✔' : '❌'}
+    </li>
+  );
+}
+
+export default function PackingList() {
+  return (
+    <section>
+      <h1>Lista de Empaque de Sally Ride</h1>
+      <ul>
+        <Item 
+          isPacked={true} 
+          name="Traje espacial" 
+        />
+        <Item 
+          isPacked={true} 
+          name="Casco con hoja dorada" 
+        />
+        <Item 
+          isPacked={false} 
+          name="Foto de Tam" 
+        />
+      </ul>
+    </section>
+  );
+}
+*/
+/*
+//Con operador lógico
+function Item({ name, importance }) {
+  return (
+    <li className="item">
+
+      {name} 
+
+      {importance >0 && <><i>(Importancia: {importance})</i></>}
+    </li>
+  );
+}
+
+export default function PackingList() {
+  return (
+    <section>
+      <h1>Lista de Empaque de Sally Ride</h1>
+      <ul>
+        <Item 
+          importance={9} 
+          name="Traje espacial" 
+        />
+        <Item 
+          importance={0} 
+          name="Casco con hoja dorada" 
+        />
+        <Item 
+          importance={6} 
+          name="Foto de Tam" 
+        />
+      </ul>
+    </section>
+  );
+}
+*/
+/*
+function Drink({ name }) {
+  let partOfPlant, caffeineContent, age;
+   
+  {name==='tea'}
+  {
+    ? { partOfPlant: 'hoja', caffeineContent: '15–70 mg/taza', age: '4,000+ años' }
+    : { partOfPlant: 'grano', caffeineContent: '80–185 mg/taza', age: '1,000+ años' }
+  }
+  
+
+  return (
+    <section>
+      <h1>{name}</h1>
+      <dl>
+        <dt>Parte de la planta</dt>
+        <dd>{partOfPlant}</dd>
+        <dt>Contenido de cafeína</dt>
+        <dd>{caffeineContent}</dd>
+        <dt>Edad</dt>
+        <dd>{age}</dd>
+      </dl>
+    </section>
+  );
+}
+
+export default function DrinkList() {
+  return (
+    <div>
+      <Drink name="tea" />
+      <Drink name="coffee" />
+    </div>
+  );
+}
+*/
+//Hacer los minios aqui
+const people = [
+  'Creola Katherine Johnson: matemática',
+  'Mario José Molina-Pasquel Henríquez: químico',
+  'Mohammad Abdus Salam: físico',
+  'Percy Lavon Julian: químico',
+  'Subrahmanyan Chandrasekhar: astrofísico'
+];
+
+export default function List() {
+  const listItems = people.map(person =>
+    <li>{person}</li>
+  );
+  return <ul>{listItems}</ul>;
 }
