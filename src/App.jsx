@@ -1,4 +1,5 @@
 
+import { Fragment } from 'react';
 import './App.css'
 import Minions from './Minions'
 /*
@@ -455,31 +456,66 @@ export default function List() {
   );
 }
 */
-
+/*
 import { recipes } from './recetas.jsx';
 
 export default function RecipeList() {
 
   const listRecipes = recipes.map(recipe =>{
-    <>
+    return(
+    <div key={recipe.id}>
     <li>Plato {recipe.name}</li>
     <ul>
-      
+      <Ingredients
+      ingredients={recipe.ingredients}
+      >
+
+      </Ingredients>
     </ul>
-    </>
+    </div>
+    )
   }) 
 
   return (
     <div>
       <h1>Recetas</h1>
+      <ul>{listRecipes}</ul>
     </div>
   );
 }
 
-function ingredients ({ingredients}){
+function Ingredients ({ingredients}){
   const listIngredients = ingredients.map(ingredient=>{
-    <>
+    return(
+    <div key={ingredient}>
       <li>{ingredient}</li>
-    </>
+    </div>
+    )
   })
+  return listIngredients
+}
+*/
+
+const poem = {
+  lines: [
+    'Escribo, borro y reescribo',
+    'Borro de nuevo, y luego',
+    'Florece una amapola.'
+  ]
+};
+
+export default function Poem() {
+  return (
+    <article>
+      {poem.lines.map((line, index) =>
+         <Fragment key={index}>
+        <p key={index}>
+          {line}
+        </p>
+        <hr/>
+        </Fragment>
+      )}
+      
+    </article>
+  );
 }
