@@ -1,5 +1,6 @@
 
 import './App.css'
+import Minions from './Minions'
 /*
 const person = {
   name: 'Gregorio Y. Zara',
@@ -296,6 +297,7 @@ export default function DrinkList() {
 }
 */
 //Hacer los minios aqui
+/*
 const minions =[
   {
     name: "Kevin",
@@ -356,15 +358,20 @@ const minions =[
 
 ] 
 
+function GoodOrBad({side}){
+  if(side=='malvado'){
+   return <img src='src/assets/img/de los malos.PNG' id='sideImg'  className="card-img-top"  alt="..."></img>
+  }
+  return <img src='src/assets/img/de los buenos.PNG' id='sideImg'  className="card-img-top"   alt="..."></img>
+}
+*/
+/*
 export default function List() {
   
 
-  function GoodOrBad({side}){
-    if(side=='malvado'){
-     return <img src='src/assets/img/de los malos.PNG' id='sideImg'  className="card-img-top"  alt="..."></img>
-    }
-    return <img src='src/assets/img/de los buenos.PNG' id='sideImg'  className="card-img-top"   alt="..."></img>
-  }
+  
+  
+  
   const listItems = minions.map(minion =>
     
     <div className="col-lg-4">
@@ -387,6 +394,92 @@ export default function List() {
       </div>
     </div>
   );
+ 
   
   return <div className='container'>{listItems}</div>;
+
+}
+*/
+/*
+export default function List(){
+  return(
+    <>
+    <h1>De los buenos</h1>
+    <Minions minions={minions} side={'de los buenos'}> </Minions>
+    <h1>De los malos</h1>
+      <Minions minions={minions} side={'malvado'}> </Minions>
+      </>
+  ) 
+}
+*/
+/*
+import { people } from './Cientificos.jsx';
+import { getImageUrl } from './utils.jsx';
+
+export default function List() {
+  const quimicos = people.filter(p => p.profession==='químico');
+  const noQuimicos = people.filter(p => p.profession!='químico');
+  const listQuimicos = quimicos.map(person =>
+    <li key={person.id}>
+      <img
+        src={getImageUrl(person)}
+        alt={person.name}
+      />
+      <p>
+        <b>{person.name}:</b>
+        {' ' + person.profession + ' '}
+        conocido/a por {person.accomplishment}
+      </p>
+    </li>
+  );
+  const listNoQuimicos = noQuimicos.map(person =>
+    <li key={person.id}>
+      <img
+        src={getImageUrl(person)}
+        alt={person.name}
+      />
+      <p>
+        <b>{person.name}:</b>
+        {' ' + person.profession + ' '}
+        conocido/a por {person.accomplishment}
+      </p>
+    </li>
+  );
+  return (
+    <article>
+      <h1>Quimicos</h1>
+      <ul>{listQuimicos}</ul>
+      <h1>No quimicos</h1>
+      <ul>{listNoQuimicos}</ul>
+    </article>
+  );
+}
+*/
+
+import { recipes } from './recetas.jsx';
+
+export default function RecipeList() {
+
+  const listRecipes = recipes.map(recipe =>{
+    <>
+    <li>Plato {recipe.name}</li>
+    <ul>
+      
+    </ul>
+    </>
+  }) 
+
+  return (
+    <div>
+      <h1>Recetas</h1>
+    </div>
+  );
+}
+
+function ingredients ({ingredients}){
+  const listIngredients = ingredients.map(ingredient=>{
+    <>
+      <li>{ingredient}</li>
+    </>
+  })
 }
