@@ -1,5 +1,5 @@
 
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import './App.css'
 import Minions from './Minions'
 /*
@@ -495,7 +495,7 @@ function Ingredients ({ingredients}){
   return listIngredients
 }
 */
-
+/*
 const poem = {
   lines: [
     'Escribo, borro y reescribo',
@@ -517,5 +517,31 @@ export default function Poem() {
       )}
       
     </article>
+  );
+}
+*/
+
+//Barra progreso
+
+import ProgressBar from "./ProgressBar";
+export default function App() {
+  const [percentage , setPercentage]= useState(0)
+
+  const inputChange = (e) => {
+    const value = parseInt(e.target.value);
+    setPercentage(value);
+  };
+
+  return (
+    <>
+      <div className="App">
+        <h1>Progress bar</h1>
+        <ProgressBar width={percentage}  />
+        <form>
+          <label htmlFor="percentage">Input Percentage:</label>
+          <input value={percentage} onChange={inputChange}  name="percentage" type="number"/>
+        </form>
+      </div>
+    </>
   );
 }
