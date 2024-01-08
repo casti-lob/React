@@ -523,25 +523,71 @@ export default function Poem() {
 
 //Barra progreso
 
-import ProgressBar from "./ProgressBar";
-export default function App() {
-  const [percentage , setPercentage]= useState(0)
+// import ProgressBar from "./ProgressBar";
+// export default function App() {
+//   const [percentage , setPercentage]= useState(0)
 
-  const inputChange = (e) => {
-    const value = parseInt(e.target.value);
-    setPercentage(value);
-  };
+//   const inputChange = (e) => {
+//     const value = parseInt(e.target.value);
+//     setPercentage(value);
+//   };
 
-  return (
+//   return (
+//     <>
+//       <div className="App">
+//         <h1>Progress bar</h1>
+//         <ProgressBar width={percentage}  />
+//         <form>
+//           <label htmlFor="percentage">Input Percentage:</label>
+//           <input value={percentage} onChange={inputChange}  name="percentage" type="number"/>
+//         </form>
+//       </div>
+//     </>
+//   );
+// }
+
+// export default function App() {
+
+//   let [hidde, setShowHide] = useState(false)
+  
+//   const showHide =(e)=>{
+//     if(!hidde){
+//       setShowHide(hidde = true)
+//     }else{
+//       setShowHide(hidde = false)
+//     }
+//   }
+//   const showText =()=>{
+//     if(!hidde){
+//       return (
+//         <h1 >Welcome to React Challenges</h1>
+//       )
+//     }
+//   }
+//   return(
+//     <>
+//       <button onClick={showHide}>Show/Hide</button>
+
+//       {showText()}
+//     </>
+//   )
+// }
+
+export default function App(){
+  const [time, setTime] = useState({min:0, sec:0})
+  const oClock = ()=>{
+    setInterval(() => {
+      setTime(time => time = {min:min})
+    }, 1000);
+  }
+
+  return(
     <>
-      <div className="App">
-        <h1>Progress bar</h1>
-        <ProgressBar width={percentage}  />
-        <form>
-          <label htmlFor="percentage">Input Percentage:</label>
-          <input value={percentage} onChange={inputChange}  name="percentage" type="number"/>
-        </form>
-      </div>
+      <h1>Timer</h1>
+
+      <button>Start</button>
+      <button>Stop</button>
+      <button>Reset</button>
     </>
-  );
+  )
 }
