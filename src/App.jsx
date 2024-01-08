@@ -1,5 +1,5 @@
 
-import { Fragment, useState } from 'react';
+import { Fragment, useState,useEffect } from 'react';
 import './App.css'
 import Minions from './Minions'
 /*
@@ -572,22 +572,98 @@ export default function Poem() {
 //     </>
 //   )
 // }
+/*
+
+//Cronometro
+export default function App(){
+  const [segundos, setSegundos] = useState(0);
+  const [minutos, setMinutos] = useState(0);
+  const [corriendo, setCorriendo] = useState(false);
+
+  useEffect(() => {
+    let intervalId;
+
+    if (corriendo) {
+      intervalId = setInterval(() => {
+        // Incrementar segundos
+        setSegundos((segundos) => segundos + 1);
+
+        // Verificar si es necesario incrementar minutos
+        if (segundos === 59) {
+          setSegundos(0);
+          setMinutos((minutos) => minutos + 1);
+        }
+      }, 1000);
+    }
+
+    // Limpiar el intervalo cuando el componente se desmonta o se detiene el cronómetro
+    return () => clearInterval(intervalId);
+  }, [corriendo, segundos]);
+
+  const handleStart = () => {
+    setCorriendo(true);
+  };
+
+  const handleStop = () => {
+    setCorriendo(false);
+  };
+
+  const handleReset = () => {
+    setSegundos(0);
+    setMinutos(0);
+    setCorriendo(false);
+  };
+
+  return (
+    <div>
+      <h1>Cronómetro</h1>
+      <p>
+        {minutos < 10 ? `0${minutos}` : minutos}:{segundos < 10 ? `0${segundos}` : segundos}
+      </p>
+      <button onClick={handleStart}>Start</button>
+      <button onClick={handleStop}>Stop</button>
+      <button onClick={handleReset}>Reset</button>
+    </div>
+  );
+}
+*/
 
 export default function App(){
-  const [time, setTime] = useState({min:0, sec:0})
-  const oClock = ()=>{
-    setInterval(() => {
-      setTime(time => time = {min:min})
-    }, 1000);
-  }
+  const [tareas, setTareas] = useState([]);
+  const [nuevaTarea, setNuevaTarea] = useState('');
 
-  return(
-    <>
-      <h1>Timer</h1>
+  const agregarTarea = () => {
+    if (nuevaTarea.trim() !== '') {
+      setTareas([...tareas, nuevaTarea]);
+      setNuevaTarea('');
+    }
+  };
 
-      <button>Start</button>
-      <button>Stop</button>
-      <button>Reset</button>
-    </>
-  )
-}
+  const eliminarTarea = (index) => {
+    const nuevasTareas = [...tareas];
+    nuevasTareas.splice(index, 1);
+    setTareas(nuevasTareas);
+  };
+
+  return (
+    <div>
+      <h1>Lista de Tareas Pendientes</h1>
+      <ul>
+        {tareas.map((tarea, index) => (
+          <li key={index}>
+            {tarea}{' '}
+            <button onClick={() => eliminarTarea(index)}>Eliminar</button>
+          </li>
+        ))}
+      </ul>
+      <div>
+        <input
+          type="text"
+          value={nuevaTarea}
+          onChange={(e) => setNuevaTarea(e.target.value)}
+        />
+        <button onClick={agregarTarea}>Agregar Tarea</button>
+      </div>
+    </div>
+  );
+};
