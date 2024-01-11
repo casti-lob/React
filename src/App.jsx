@@ -546,6 +546,7 @@ export default function Poem() {
 //   );
 // }
 
+////mostrar texto o ocultarlo
 // export default function App() {
 
 //   let [hidde, setShowHide] = useState(false)
@@ -627,7 +628,8 @@ export default function App(){
   );
 }
 */
-
+//lista
+/*
 export default function App(){
   const [tareas, setTareas] = useState([]);
   const [nuevaTarea, setNuevaTarea] = useState('');
@@ -666,4 +668,58 @@ export default function App(){
       </div>
     </div>
   );
+};
+*/
+//Enviar datos a formulario
+export default function App(){
+  
+  const [user, setUser] = useState({userName:"", fullName:"",age:0})
+  let [hidde, setHide] = useState(false)
+  const addUser =(e)=>{
+    const{name, value} = e.target
+    setUser({...user , [name]:value})
+  }
+
+  const showList=(e)=>{
+    e.preventDefault()
+    if(!hidde){
+      setHide(hidde = true)
+    }else{
+      setHide(hidde = false)
+    }
+  }
+
+  const text=()=>{
+    if(!hidde){
+      return(
+        <>
+        <li> UserName: {user.userName}</li>
+        <li> FullName: {user.fullName}</li>
+        <li> Age: {user.age}</li>
+        </>
+      )
+    }
+  }
+
+  return(
+    <>
+      <form action="">
+          <p>Username:</p>
+          <p><input name='userName' value={user.userName} onChange={addUser} type="text" /></p>
+
+          <p>FullName</p>
+          <p><input name='fullName' value={user.fullName} onChange={addUser} type="text" /></p>
+
+          <p>Age</p>
+          <p><input type="number" name='age' value={user.age} onChange={addUser}/></p>
+
+          <p><input type="submit" value="Submit" onClick={showList}/></p>
+      </form>
+
+      <h1>Request Sent to DB with below request data</h1>
+      <ul>
+        {text()}
+      </ul>
+    </>
+  )
 };
