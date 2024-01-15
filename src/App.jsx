@@ -1,7 +1,7 @@
-
+/*
 import { Fragment, useState,useEffect } from 'react';
 import './App.css'
-import Minions from './Minions'
+import Minions from './Minions'*/
 /*
 const person = {
   name: 'Gregorio Y. Zara',
@@ -671,6 +671,7 @@ export default function App(){
 };
 */
 //Enviar datos a formulario
+/*
 export default function App(){
   
   const [user, setUser] = useState({userName:"", fullName:"",age:0})
@@ -723,3 +724,124 @@ export default function App(){
     </>
   )
 };
+*/
+//PETICIONES
+
+import axios from "axios";
+import React, {useEffect, useState} from "react";
+import {getPost,createPost,updatePost,deletePost, getPosts} from './services/postService'
+const baseURL = "http://localhost:3000/posts/";
+/*
+//GET
+export default function App() {
+  const [post, setPost] = useState(null);
+
+  useEffect(() => {
+    axios.get(baseURL).then((response) => {
+      setPost(response.data);
+    });
+  }, []); // El array vacío indica que este efecto solo se ejecuta una vez, equivalente a componentDidMount en componentes de clase
+
+  if (!post) return null;
+
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
+    </div>
+  );
+}*/
+/*
+export default function App() {
+  const [post, setPost] = useState(null);
+
+  useEffect(() => {
+    axios.get(`${baseURL}/1`).then((response) => {
+      setPost(response.data);
+    });
+  }, []);
+
+  function createPost() {
+    axios
+      .post(baseURL, {
+        title: "Hello World!",
+        body: "This is a new post."
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
+  }
+
+  if (!post) return "No post!"
+
+  return (
+    <div>
+      <h1>{post.id} {post.title}</h1>
+      <p>{post.body}</p>
+      <button onClick={createPost}>Create Post</button>
+    </div>
+  );
+}*/
+
+export default function App() {
+  const [post, setPost] = useState(null);
+  const [id,setId]= useState(1)
+  useEffect(() => {
+    getPost(id).then((response) => {
+      setPost(response.data);
+    });
+    async function getPostComp(){
+      const posts = await getPosts();
+      console.log(posts);
+    }
+    getPostComp()
+  }, [id]);
+  
+  
+
+  const handleCreatePost = () => {
+    const postData = {
+      title: 'Hello World!',
+      body: 'This is a new post.',
+    };
+  
+    createPost(postData).then((response) => {
+      setPost(response.data);
+    });
+  };
+  
+  const handleUpdatePost = () => {
+    const updatedData = {
+      title: 'Hello World!',
+      body: 'This is an updated post.',
+    };
+  
+    updatePost(1, updatedData).then((response) => {
+      setPost(response.data);
+    });
+  };
+  
+  const handleDeletePost = () => {
+    deletePost(1).then(() => {
+      alert('Post deleted!');
+      setPost(null);
+    });
+  };
+  const handleChangeId = ()=>{
+    setId(3);
+  }
+  
+  if (!post) return 'No post!';
+  
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
+      <button onClick={handleCreatePost}>Create Post</button>
+      <button onClick={handleUpdatePost}>Update Post</button>
+      <button onClick={handleDeletePost}>Delete Post</button>
+      <button onClick={handleChangeId}>Cambio de id</button>
+      <p>Id: {id}</p>
+    </div>
+  );
+  }
